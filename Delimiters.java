@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Delimiters
 {
     /** The open and close delimiters. */
@@ -17,7 +18,13 @@ public class Delimiters
     /** Returns an ArrayList of delimiters from the array tokens,
      * as described in part (a). */
     public ArrayList<String> getDelimitersList(String[] tokens)
-    { /* to be implemented in part (a) */ }
+    {
+        ArrayList<String> delimiters = new ArrayList<String>();
+        for (String s:tokens) {
+            if (s.equals(openDel) || s.equals(closeDel)) delimiters.add(s);
+        }
+        return delimiters;
+    }
 
 
     /** Returns true if the delimiters are balanced and false otherwise,
@@ -25,7 +32,16 @@ public class Delimiters
      * Precondition: delimiters contains only valid open and close delimiters.
      */
     public boolean isBalanced(ArrayList<String> delimiters)
-    { /* to be implemented in part (b) */ }
+    {
+        int opens = 0;
+        int closes = 0;
+        for (String s : delimiters) {
+            if (s.equals(openDel)) opens++;
+            if (s.equals(closeDel)) closes++;
+            if (closes > opens) return false;
+        }
+        return opens == closes;
+    }
  
     // There may be instance variables, constructors,
     // and methods that are not shown.
